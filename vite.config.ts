@@ -1,0 +1,91 @@
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import VitePages from 'vite-plugin-pages';
+import ViteComponents from 'unplugin-vue-components/vite';
+import ViteFont from 'vite-plugin-fonts';
+import { imagetools } from 'vite-imagetools';
+import ImageMin from 'vite-plugin-imagemin';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+	publicDir: 'public',
+	logLevel: 'info',
+	root: process.cwd(),
+	base: '/',
+	plugins: [
+		vue({
+			include: [ /\.vue$/ ]
+		}),
+		VitePages({
+			dirs: [ { dir: 'src/pages', baseRoute: '' } ]
+		}),
+		ViteComponents({ dirs: [ 'src/components' ] }),
+		ViteFont({
+			google: {
+				families: [
+					{
+						name: 'Prompt',
+						styles: 'wght@400;600;700;800;900'
+					},
+					{
+						name: 'Sarabun',
+						styles: 'wght@400;600;700;800;900'
+					},
+					{
+						name: 'Roboto',
+						styles: 'wght@300;400;500;600;700'
+					}
+				]
+			}
+		}),
+		imagetools(),
+		ImageMin({
+			gifsicle: {
+				optimizationLevel: 3,
+				interlaced: false
+			},
+			optipng: {
+				optimizationLevel: 3
+			},
+			mozjpeg: {
+				quality: 90
+			},
+			pngquant: {
+				quality: [ 0.8, 1 ],
+				speed: 4
+			},
+			svgo: {
+				plugins: [
+					{
+						name: 'removeViewBox',
+						active: false
+					},
+					{
+						name: 'removeEmptyAttrs',
+						active: false
+					}
+				]
+			}
+		})
+	],
+	resolve: {
+		alias: [
+			{
+				find: '~',
+				replacement: `/src/assets`
+			},
+			{
+				find: '@src',
+				replacement: `/src`
+			},
+			{
+				find: '@state',
+				replacement: `/src/state`
+			},
+			{
+				find: '@data',
+				replacement: `/src/data`
+			}
+		]
+	}
+});
