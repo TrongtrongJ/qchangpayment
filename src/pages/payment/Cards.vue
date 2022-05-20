@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed } from "vue";
+
 import {
   cardPaymentOptions,
   cardPaymentOptionQuantity,
 } from "../../state/payment-options/cardPaymentOptionsState";
 
-import CardList from "../../components/partials/CardList.vue";
+import ExistingCardList from "../../components/partials/ExistingCardList.vue";
 import EmptyClassList from "../../components/partials/EmptyCardList.vue";
 
 const CardComponent = computed(() =>
-  cardPaymentOptionQuantity.value >= 1 ? CardList : EmptyClassList
+  cardPaymentOptionQuantity.value >= 1 ? ExistingCardList : EmptyClassList
 );
 </script>
 

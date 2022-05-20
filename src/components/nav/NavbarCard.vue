@@ -22,11 +22,13 @@ const iconComponent = defineAsyncComponent(
           :class="classes['card-icon']"
           v-if="iconComponent"
           :is="iconComponent"
-          :fill="props.isActive ? '#f04d2f' : '#014672'"
+          :fill="props.isActive ? 'var(--secondary)' : 'var(--primary)'"
         />
       </div>
       <div :class="classes['card-text-content-container']">
-        <div :class="classes['card-text-title']">{{ props.title }}</div>
+        <div :class="[classes['card-text-title'], props.isActive && classes.active]">
+          {{ props.title }}
+        </div>
         <div :class="classes['card-text-description']">{{ props.description }}</div>
       </div>
     </div>
@@ -47,7 +49,7 @@ const iconComponent = defineAsyncComponent(
 }
 
 .active {
-  border-color: #f04d2f;
+  border-color: var(--secondary);
 }
 .card-inner {
   margin: 1rem;
@@ -70,10 +72,14 @@ const iconComponent = defineAsyncComponent(
 }
 
 .card-text-title {
-  color: #f04d2f;
+  color: var(--primary);
   font-weight: bold;
   font-size: 90%;
   margin-bottom: 0.25rem;
+
+  &.active {
+    color: var(--secondary);
+  }
 }
 
 .card-text-description {

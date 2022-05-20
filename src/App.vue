@@ -4,6 +4,7 @@ const route = useRoute();
 </script>
 
 <template>
+  <AddNewCardModal />
   <Header />
   <Navbar />
   <div class="content-container">

@@ -33,6 +33,6 @@ const router = useRouter();
 }
 
 .active {
-  color: #f04d2f;
+  color: var(--secondary);
 }
 </style>

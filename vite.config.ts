@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite';
+import * as path from 'path';
 import vue from '@vitejs/plugin-vue';
 import VitePages from 'vite-plugin-pages';
 import ViteComponents from 'unplugin-vue-components/vite';
 import ViteFont from 'vite-plugin-fonts';
+import PurgeIcons from 'vite-plugin-purge-icons';
 import { imagetools } from 'vite-imagetools';
 import ImageMin from 'vite-plugin-imagemin';
+import { vueI18n } from '@intlify/vite-plugin-vue-i18n';
+import purgecss from 'rollup-plugin-purgecss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +16,9 @@ export default defineConfig({
 	logLevel: 'info',
 	root: process.cwd(),
 	base: '/',
+	optimizeDeps: {
+		include: [ '@iconify/iconify', '@vueuse/core', '@vueuse/head', 'nprogress', 'notyf', 'vue' ]
+	},
 	plugins: [
 		vue({
 			include: [ /\.vue$/ ]
@@ -38,6 +45,10 @@ export default defineConfig({
 				]
 			}
 		}),
+		vueI18n({
+			include: path.resolve(__dirname, './src/locales/**')
+		}),
+		PurgeIcons(),
 		imagetools(),
 		ImageMin({
 			gifsicle: {
@@ -66,6 +77,23 @@ export default defineConfig({
 					}
 				]
 			}
+		}),
+		purgecss({
+			content: [ `./src/**/*.vue` ],
+			variables: false,
+			safelist: {
+				standard: [
+					/(autv|lnil|lnir|fas?)/,
+					/-(leave|enter|appear)(|-(to|from|active))$/,
+					/^(?!(|.*?:)cursor-move).+-move$/,
+					/^router-link(|-exact)-active$/,
+					/data-v-.*/
+				]
+			},
+			defaultExtractor(content) {
+				const contentWithoutStyleBlocks = content.replace(/<style[^]+?<\/style>/gi, '');
+				return contentWithoutStyleBlocks.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || [];
+			}
 		})
 	],
 	resolve: {
@@ -85,6 +113,10 @@ export default defineConfig({
 			{
 				find: '@data',
 				replacement: `/src/data`
+			},
+			{
+				find: '@utils',
+				replacement: `/src/utils`
 			}
 		]
 	}

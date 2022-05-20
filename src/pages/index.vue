@@ -8,8 +8,3 @@ onMounted(() => {
   router.push("/payment/cards");
 });
 </script>
-
-<template>
-  <AddNewCardModal />
-  <RouterView> </RouterView>
-</template>

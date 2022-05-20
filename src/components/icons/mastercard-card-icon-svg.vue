@@ -3,8 +3,6 @@
     width="38px"
     height="38px"
     viewBox="0 -54.25 482.51 482.51"
-    style="background-color: e2f2ff; border-radius: 6px"
-    data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
   >
     <title>mastercard</title>

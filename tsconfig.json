@@ -15,6 +15,7 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom"],
     "types": [
       "node", 
@@ -24,6 +25,7 @@
     "paths": {
       "~/*": ["./src/assets/*"],
       "@src/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"],
       "@state/*": ["./src/state/*"],
       "@data/*": ["./src/data/*"]
     }

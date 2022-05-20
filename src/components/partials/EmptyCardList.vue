@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { isModalActive } from "@state/payment-options/addNewCardState";
+</script>
+
 <template>
   <div :class="classes['card-title-container']"><h1>ชำระค่าบริการ</h1></div>
   <div class="flex-conter" :class="classes['card-content-container']">
@@ -14,16 +18,23 @@
         <div>JCB และ Union Pay</div>
       </div>
     </div>
-    <div :class="classes['card-provider-icons-container']"></div>
+    <div :class="classes['card-provider-icons-container']">
+      <VisaCardIconSvg />
+      <MastercardCardIconSvg />
+
+      <UnionpayCardIconSvg /> <JcbCardIconSvg />
+    </div>
     <div class="flex-conter" :class="classes['add-new-card-button-container']">
-      <button>+ เพิ่มข้อมูลบัตรเครดิต/เดบิต</button>
+      <button @click="isModalActive = true" class="pointer-cursor">
+        + เพิ่มข้อมูลบัตรเครดิต/เดบิต
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss" module="classes">
 .card-title-container {
-  color: #014672;
+  color: var(--primary);
   font-size: 95%;
 }
 
@@ -34,6 +45,7 @@
 
   .card-icon-container {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     > img {
       display: block;
       margin-left: auto;
@@ -45,7 +57,7 @@
   .card-text-container {
     text-align: center;
     .card-primary-text-container {
-      color: #014672;
+      color: var(--primary);
       font-weight: 600;
     }
 
@@ -59,13 +71,22 @@
   }
 
   .card-provider-icons-container {
+    text-align: center;
     display: block;
+    margin: 1rem auto 1rem auto;
+
+    > svg {
+      height: 22px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      margin: auto 0.25rem auto 0.25rem;
+    }
   }
 
   .add-new-card-button-container {
     text-align: center;
     > button {
-      background-color: #014672;
+      background-color: var(--primary);
       border-width: 0px;
       border-radius: 8px;
       width: 180px;

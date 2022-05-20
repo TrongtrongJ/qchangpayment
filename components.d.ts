@@ -5,19 +5,25 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddNewCardModal: typeof import('./src/components/modal/AddNewCardModal.vue')['default']
     AtmIconSvg: typeof import('./src/components/icons/atm-icon-svg.vue')['default']
     CardList: typeof import('./src/components/partials/CardList.vue')['default']
     CreditCardIconSvg: typeof import('./src/components/icons/credit-card-icon-svg.vue')['default']
     EmptyCardList: typeof import('./src/components/partials/EmptyCardList.vue')['default']
     EmptyCreditCardSvg: typeof import('./src/components/icons/empty-credit-card-svg.vue')['default']
+    ExistingCardList: typeof import('./src/components/partials/ExistingCardList.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    JcbCardIconSvg: typeof import('./src/components/icons/jcb-card-icon-svg.vue')['default']
+    JcbIconSvg: typeof import('./src/components/icons/jcb-icon-svg.vue')['default']
     MastercardCardIconSvg: typeof import('./src/components/icons/mastercard-card-icon-svg.vue')['default']
     MobilePhoneIconSvg: typeof import('./src/components/icons/mobile-phone-icon-svg.vue')['default']
     Navbar: typeof import('./src/components/nav/Navbar.vue')['default']
     NavbarCard: typeof import('./src/components/nav/NavbarCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UnionpayCardIconSvg: typeof import('./src/components/icons/unionpay-card-icon-svg.vue')['default']
+    UnionpayIconSvg: typeof import('./src/components/icons/unionpay-icon-svg.vue')['default']
     VisaCardIconSvg: typeof import('./src/components/icons/visa-card-icon-svg.vue')['default']
     WalletIconSvg: typeof import('./src/components/icons/wallet-icon-svg.vue')['default']
   }

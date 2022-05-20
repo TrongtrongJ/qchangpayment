@@ -3,7 +3,6 @@
     width="38px"
     height="38px"
     viewBox="0 0 141.732 141.732"
-    style="background-color: e2f2ff; border-radius: 6px"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g fill="#2566af">
