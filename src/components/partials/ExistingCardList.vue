@@ -15,6 +15,19 @@ import {
 } from "@state/payment-options/cardPaymentOptionsState";
 
 import { isModalActive } from "@state/payment-options/addNewCardState";
+
+function getCardIconComponent(cardTypeName: string) {
+  switch (minifycardTypeName(cardTypeName)) {
+    case "visa":
+      return VisaCardIcon;
+    case "mastercard":
+      return MastercardCardIcon;
+    case "unionpay":
+      return UnionpayCardIcon;
+    case "jcb":
+      return JcbCardIcon;
+  }
+}
 </script>
 
 <template>
@@ -47,21 +60,9 @@ import { isModalActive } from "@state/payment-options/addNewCardState";
           /><span :class="classes['checkbox-control']" />
         </div>
         <div :class="classes['card-provider-icon-container']">
-          <VisaCardIcon
+          <component
+            :is="getCardIconComponent(card.cardType)"
             :class="classes['card-provider-icon']"
-            v-if="minifycardTypeName(card.cardType) === 'visa'"
-          />
-          <MastercardCardIcon
-            :class="classes['card-provider-icon']"
-            v-else-if="minifycardTypeName(card.cardType) === 'mastercard'"
-          />
-          <UnionpayCardIcon
-            :class="classes['card-provider-icon']"
-            v-else-if="minifycardTypeName(card.cardType) === 'unionpay'"
-          />
-          <JcbCardIcon
-            :class="classes['card-provider-icon']"
-            v-else-if="minifycardTypeName(card.cardType) === 'jcb'"
           />
         </div>
         <div :class="classes['card-code']">

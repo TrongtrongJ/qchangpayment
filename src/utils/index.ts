@@ -1,3 +1,4 @@
+export * from './primitive.util';
 export * from './string.util';
 export * from './record.util';
 

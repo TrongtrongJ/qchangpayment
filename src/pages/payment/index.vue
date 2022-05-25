@@ -10,6 +10,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <AddNewCardModal />
   <RouterView> </RouterView>
 </template>

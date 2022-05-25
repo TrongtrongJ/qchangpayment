@@ -1,12 +1,8 @@
-import { ComputedRef, unref } from 'vue';
+import { Ref, ComputedRef, unref } from 'vue';
+
+import { isPrimitive } from './primitive.util';
 
 export type BaseRecordType = Record<string, any>;
-
-const nonPrimitiveTypes = [ 'object', 'function' ];
-
-export function isPrimitive(val: any): boolean {
-	return val == null || !nonPrimitiveTypes.includes(typeof val);
-}
 
 export function deepClone<T extends BaseRecordType>(obj: T): T {
 	return JSON.parse(JSON.stringify(obj));
@@ -35,6 +31,8 @@ export function resetAllKeysTo<T extends BaseRecordType>(obj: T, toVal: string |
 	Object.assign(obj, keyMap);
 }
 
-export function deriveReactiveValidity(reactiveObj: Record<string, boolean | ComputedRef<boolean>>): boolean {
+export function deriveReactiveValidity(
+	reactiveObj: Record<string, boolean | Ref<boolean> | ComputedRef<boolean>>
+): boolean {
 	return Object.keys(reactiveObj).every((k) => unref(reactiveObj[k]));
 }

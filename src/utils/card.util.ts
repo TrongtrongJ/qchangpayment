@@ -1,4 +1,3 @@
-import { cardType } from '@src/data/cardFormData';
 import { BaseRecordType } from './record.util';
 import { removeWhiteSpaces, isNumeric } from './string.util';
 

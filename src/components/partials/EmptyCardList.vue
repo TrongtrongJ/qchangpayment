@@ -21,8 +21,8 @@ import { isModalActive } from "@state/payment-options/addNewCardState";
     <div :class="classes['card-provider-icons-container']">
       <VisaCardIconSvg />
       <MastercardCardIconSvg />
-
-      <UnionpayCardIconSvg /> <JcbCardIconSvg />
+      <UnionpayCardIconSvg />
+      <JcbCardIconSvg />
     </div>
     <div class="flex-conter" :class="classes['add-new-card-button-container']">
       <button @click="isModalActive = true" class="pointer-cursor">

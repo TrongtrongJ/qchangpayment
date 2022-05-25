@@ -8,7 +8,6 @@
 .header-container {
   margin: 1rem;
 }
-
 .header-text {
   font-weight: bold;
   font-size: 140%;

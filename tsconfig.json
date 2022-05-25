@@ -27,7 +27,8 @@
       "@src/*": ["./src/*"],
       "@utils/*": ["./src/utils/*"],
       "@state/*": ["./src/state/*"],
-      "@data/*": ["./src/data/*"]
+      "@data/*": ["./src/data/*"],
+      "@components/*": ["./src/components/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

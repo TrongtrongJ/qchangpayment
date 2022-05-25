@@ -1,11 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div :class="classes['cards-options-container']"></div>
+  <div :class="classes['main-option-container']"></div>
 </template>
 
 <style scoped lang="scss" module="classes">
-.cards-options-container {
+.main-option-container {
   width: 500px;
   height: 500px;
   background-color: white;
