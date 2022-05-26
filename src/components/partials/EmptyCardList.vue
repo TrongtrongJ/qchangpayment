@@ -18,7 +18,7 @@ import { isModalActive } from "@state/payment-options/addNewCardState";
         <div>JCB และ Union Pay</div>
       </div>
     </div>
-    <div :class="classes['card-provider-icons-container']">
+    <div :class="classes['card-type-icons-container']">
       <VisaCardIconSvg />
       <MastercardCardIconSvg />
       <UnionpayCardIconSvg />
@@ -70,7 +70,7 @@ import { isModalActive } from "@state/payment-options/addNewCardState";
     }
   }
 
-  .card-provider-icons-container {
+  .card-type-icons-container {
     text-align: center;
     display: block;
     margin: 1rem auto 1rem auto;

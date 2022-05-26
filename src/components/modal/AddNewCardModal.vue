@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isChar } from "@src/utils";
 import {
   isModalActive,
   cardFormData,
@@ -16,7 +17,7 @@ import { decodeHTMLEntity } from "@utils/html-entity-encoder.util";
 
 function cardCodeKeyPressHandler(event: any) {
   const { key } = event;
-  if (/^.$/u.test(key)) {
+  if (isChar(key)) {
     cardFormData.cardCode += key;
     event.preventDefault();
     event.stopPropagation();

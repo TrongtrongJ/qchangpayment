@@ -6,7 +6,7 @@ import {
 	isValidCardExpirationDate,
 	isValidCVV,
 	isValidFnameLname,
-	deriveReactiveValidity,
+	deriveKeysValidity,
 	syncKeyValues,
 	capitalizePhrase,
 	bootstrapDigit,
@@ -99,4 +99,4 @@ export function formatExpiration() {
 	}
 }
 
-export const isFormValid = computed(() => deriveReactiveValidity(cardFormValidities));
+export const isFormValid = computed(() => deriveKeysValidity(cardFormValidities));

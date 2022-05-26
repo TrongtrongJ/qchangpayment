@@ -6,6 +6,11 @@ export function isNumeric(str: string): boolean {
 	return !!str && !isNaN(+str);
 }
 
+const charRegex = /^.$/u;
+export function isChar(str: string): boolean {
+	return charRegex.test(str);
+}
+
 export function bootstrapDigit(digit: string | number): string {
 	return `${'0'.repeat(Number(digit < 10))}${digit}`;
 }

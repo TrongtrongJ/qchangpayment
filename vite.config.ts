@@ -8,6 +8,8 @@ import PurgeIcons from 'vite-plugin-purge-icons';
 import { imagetools } from 'vite-imagetools';
 import ImageMin from 'vite-plugin-imagemin';
 import { vueI18n } from '@intlify/vite-plugin-vue-i18n';
+//import Unocss from 'unocss/vite';
+// import presetTailwind from '@unocss/preset-wind';
 import purgecss from 'rollup-plugin-purgecss';
 
 // https://vitejs.dev/config/
@@ -17,7 +19,16 @@ export default defineConfig({
 	root: process.cwd(),
 	base: '/',
 	optimizeDeps: {
-		include: [ '@iconify/iconify', '@vueuse/core', '@vueuse/head', 'nprogress', 'notyf', 'vue' ]
+		include: [
+			'@iconify/iconify',
+			'@vueuse/core',
+			'@vueuse/head',
+			'nprogress',
+			'notyf',
+			'vue'
+			//	'unocss',
+			//	'@unocss/preset-wind'
+		]
 	},
 	plugins: [
 		vue({

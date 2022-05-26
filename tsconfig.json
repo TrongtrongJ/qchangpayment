@@ -16,12 +16,14 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
     "lib": ["esnext", "dom"],
     "types": [
       "node", 
       "vite/client", 
       "vite-plugin-pages/client",
     ],
+    
     "paths": {
       "~/*": ["./src/assets/*"],
       "@src/*": ["./src/*"],
