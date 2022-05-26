@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { isModalActive } from "@state/payment-options/addNewCardState";
+import { baseUri } from "@data/appContextData";
 </script>
 
 <template>
   <div :class="classes['card-title-container']"><h1>ชำระค่าบริการ</h1></div>
   <div class="flex-conter" :class="classes['card-content-container']">
     <div :class="classes['card-icon-container']">
-      <img src="/empty-credit-card.png" alt="empty credit card" />
+      <img :src="`${baseUri}/empty-credit-card.png`" alt="empty credit card" />
     </div>
     <div :class="classes['card-text-container']">
       <div :class="classes['card-primary-text-container']">
