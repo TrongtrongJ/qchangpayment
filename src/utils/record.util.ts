@@ -2,7 +2,9 @@ import { Ref, ComputedRef, unref } from 'vue';
 
 import { isPrimitive } from './primitive.util';
 
-import { BaseFunctionType } from './function.util'
+import { removeWhiteSpaces } from './string.util';
+
+import { BaseFunctionType } from './function.util';
 
 export type BaseRecordType<V = any> = Record<string, V>;
 
@@ -57,4 +59,27 @@ export function extractObjectDtoFromRecordOrClass<T extends BaseRecordType>(
 
 export function getAllKeysOfClass<T extends BaseClassType>(c: T): (keyof T)[] {
 	return Object.keys(c) as (keyof T)[];
+}
+
+function copyRecordWithoutWhiteSpaces<R extends BaseRecordType>(r: R): R {
+  return Object.keys(r).reduce((acc, cur) => {
+    const currentKeyValue = r[cur]
+    return {
+      ...acc,
+      [cur]: typeof currentKeyValue === 'string' ? removeWhiteSpaces(currentKeyValue) : currentKeyValue
+    }
+  }, {
+  }) as R;
+};
+
+export function areRecordsDifferent(
+  rec1: BaseRecordType, 
+  rec2: BaseRecordType, 
+  ignoreWhiteSpace: boolean = false
+): boolean {
+  ignoreWhiteSpace 
+    && (rec1 = copyRecordWithoutWhiteSpaces(rec1)) 
+    && (rec2 = copyRecordWithoutWhiteSpaces(rec2))
+
+  return JSON.stringify(rec1) !== JSON.stringify(rec2)
 }
