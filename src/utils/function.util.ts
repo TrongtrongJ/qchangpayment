@@ -1,1 +1,1 @@
-export type BaseFunctionType<Arg = any, Res = any> = (arg: Arg) => Res;
+export type BaseFunctionType<Res = any> = (...args: any[]) => Res;

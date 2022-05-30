@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { isModalActive } from "@state/payment-options/addNewCardState";
 import { baseUri } from "@data/appContextData";
+import { onceImageErrored } from "@utils/image.util";
 </script>
 
 <template>
   <div :class="classes['card-title-container']"><h1>ชำระค่าบริการ</h1></div>
   <div class="flex-conter" :class="classes['card-content-container']">
     <div :class="classes['card-icon-container']">
-      <img :src="`${baseUri}/empty-credit-card.png`" alt="empty credit card" />
+      <img
+        :src="`${baseUri}/empty-credit-card.png`"
+        alt="empty credit card"
+        @error.once="(event) => onceImageErrored(event, '263x176')"
+      />
     </div>
     <div :class="classes['card-text-container']">
       <div :class="classes['card-primary-text-container']">

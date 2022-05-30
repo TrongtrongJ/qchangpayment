@@ -49,7 +49,7 @@ function getCardIconComponent(cardTypeName: string) {
   <div :class="classes['cards-container-padded']">
     <div :class="classes['cards-container']">
       <div
-        v-for="(card, cardIdx) in cardPaymentOptions"
+        v-for="({ cardCode, cardType, isDefault }, cardIdx) in cardPaymentOptions"
         :class="classes['payment-card-container']"
       >
         <div @click="selectedCardIndex = cardIdx" class="pointer-cursor">
@@ -61,15 +61,15 @@ function getCardIconComponent(cardTypeName: string) {
         </div>
         <div :class="classes['card-provider-icon-container']">
           <component
-            :is="getCardIconComponent(card.cardType)"
+            :is="getCardIconComponent(cardType)"
             :class="classes['card-provider-icon']"
           />
         </div>
         <div :class="classes['card-code']">
           &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;
-          &#9679;&#9679;&#9679;&#9679; {{ card.cardCode.substring(12, 16) }}
+          &#9679;&#9679;&#9679;&#9679; {{ cardCode.substring(12, 16) }}
         </div>
-        <div v-if="card.isDefault" :class="classes['card-default-label']">
+        <div v-if="isDefault" :class="classes['card-default-label']">
           &#9733; บัตรเริ่มต้น
         </div>
         <hr :class="classes['payment-card-divider']" />

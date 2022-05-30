@@ -2,13 +2,13 @@ import { Ref, ComputedRef, unref } from 'vue';
 
 import { isPrimitive } from './primitive.util';
 
-import {BaseFunctionType} from './function.util'
+import { BaseFunctionType } from './function.util'
 
 export type BaseRecordType<V = any> = Record<string, V>;
 
-export type BaseClassType<T extends Function = any> = new (...args: any[]) => T
+export type BaseClassType<T extends Function = any> = new (...args: any[]) => T;
 
-export type RecordOrClass = BaseRecordType | BaseClassType
+export type RecordOrClass = BaseRecordType | BaseClassType;
 
 export function deepClone<T extends BaseRecordType>(obj: T): T {
 	return JSON.parse(JSON.stringify(obj));
@@ -43,15 +43,18 @@ export function deriveKeysValidity(
 	return Object.keys(reactiveObj).every((k) => unref(reactiveObj[k]));
 }
 
-type ExtractObjectRe<T extends BaseRecordType = any> = {[key in (keyof T) ]: T[key] extends (P: any) => any ? ReturnType<T[key]> : T[key]};
 export function extractObjectDtoFromRecordOrClass<T extends BaseRecordType>(
   objectDto: BaseRecordType<primitive & BaseFunctionType>, 
   objectFrom: RecordOrClass
-): ExtractObjectRe<T> {
+){
 	return Object.keys(objectDto).reduce((acc, cur) => {
 		return {
 			...acc,
 			[cur]: typeof objectDto[cur] === 'function' ? objectDto[cur](objectFrom) : objectFrom[cur]
 		};
-	}, {}) as ExtractObjectRe<T>;
+	}, {}) as {[key in (keyof T) ]: T[key] extends BaseFunctionType ? ReturnType< T[key]> : T[key]};
+}
+
+export function getAllKeysOfClass<T extends BaseClassType>(c: T): (keyof T)[] {
+	return Object.keys(c) as (keyof T)[];
 }
