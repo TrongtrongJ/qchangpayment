@@ -1,9 +1,9 @@
-const nonPrimitiveTypes = [ 'object', 'function' ];
+const nonPrimitiveTypes = ["object", "function"];
 
 export function isNullish(val: any): boolean {
-	return val == null;
+  return val == null;
 }
 
 export function isPrimitive(val: any): boolean {
-	return isNullish(val) || !nonPrimitiveTypes.includes(typeof val);
+  return isNullish(val) || !nonPrimitiveTypes.includes(typeof val);
 }
