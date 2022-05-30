@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isModalActive } from "@state/payment-options/addNewCardState";
 import { baseUri } from "@data/appContextData";
-import { onceImageErrored } from "@utils/image.util";
+import { usePlaceHolderImage } from "@utils/image.util";
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import { onceImageErrored } from "@utils/image.util";
       <img
         :src="`${baseUri}/empty-credit-card.png`"
         alt="empty credit card"
-        @error.once="(event) => onceImageErrored(event, '263x176')"
+        @error.once="(event) => usePlaceHolderImage(event, '263x176')"
       />
     </div>
     <div :class="classes['card-text-container']">

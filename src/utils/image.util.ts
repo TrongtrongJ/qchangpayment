@@ -1,4 +1,4 @@
-export function onceImageErrored(event: Event, size: string): void {
+export function usePlaceHolderImage(event: Event, size: `${number}x${number}`): void {
 	const target = event.target as HTMLImageElement;
 	target.src = `https://via.placeholder.com/${size}`;
 }
