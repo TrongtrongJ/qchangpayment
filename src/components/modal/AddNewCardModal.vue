@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { isChar } from "@src/utils";
+import RiErrorWarningFill from "~icons/ri/error-warning-fill";
+import MdiEye from "~icons/mdi/eye";
+import MdiEyeOff from "~icons/mdi/eye-off";
 import {
   isModalActive,
   cardFormData,
@@ -11,6 +15,7 @@ import {
   capitalizeCardHolderName,
   formatExpiration,
   formatCardCode,
+  cardInputFormatIsPassword,
 } from "@state/payment-options/addNewCardState";
 
 import { decodeHTMLEntity } from "@utils/html-entity-encoder.util";
@@ -23,8 +28,16 @@ function cardCodeKeyPressHandler(event: any) {
     event.stopPropagation();
     return false;
   }
-  cardFormData.cardCode = cardFormData.cardCode.slice(0, -2);
+  const cardFormDataCardCode = cardFormData.cardCode;
+  cardFormData.cardCode = cardFormDataCardCode.slice(
+    0,
+    cardFormData.cardCode.slice(-1) === " " ? -2 : -1
+  );
   return true;
+}
+
+function getEyeIcon(InputDisplayFormatIsPassword: boolean) {
+  return InputDisplayFormatIsPassword ? MdiEyeOff : MdiEye;
 }
 </script>
 
@@ -61,7 +74,8 @@ function cardCodeKeyPressHandler(event: any) {
               placeholder="กรอกชื่อที่ปรากฏบนบัตร"
             />
             <label :class="classes['form-error-description']"
-              >&#9432; โปรดใส่ชื่อ-สกุล</label
+              ><RiErrorWarningFill :class="classes['warning-icon']" />
+              โปรดใส่ชื่อ-สกุล</label
             >
           </div>
         </div>
@@ -85,8 +99,16 @@ function cardCodeKeyPressHandler(event: any) {
               type="text"
               placeholder="`&#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;`"
             />
+            <component
+              @click="
+                cardInputFormatIsPassword.cardCode = !cardInputFormatIsPassword.cardCode
+              "
+              :is="getEyeIcon(cardInputFormatIsPassword.cardCode)"
+              :class="classes['eye-icon']"
+            />
             <label :class="classes['form-error-description']"
-              >&#9432; หมายเลขบัตรไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง</label
+              ><RiErrorWarningFill :class="classes['warning-icon']" />
+              หมายเลขบัตรไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง</label
             >
           </div>
         </div>
@@ -104,7 +126,8 @@ function cardCodeKeyPressHandler(event: any) {
                 placeholder="MM/YY"
               />
               <label :class="classes['form-error-description']"
-                >&#9432; กรุณากรอกวันหมดอายุบัตร</label
+                ><RiErrorWarningFill :class="classes['warning-icon']" />
+                กรุณากรอกวันหมดอายุบัตร</label
               >
             </div>
           </div>
@@ -117,8 +140,14 @@ function cardCodeKeyPressHandler(event: any) {
                 type="password"
                 placeholder="&#9679;&#9679;&#9679;"
               />
+              <component
+                @click="cardInputFormatIsPassword.CVV = !cardInputFormatIsPassword.CVV"
+                :is="getEyeIcon(cardInputFormatIsPassword.CVV)"
+                :class="classes['eye-icon']"
+              />
               <label :class="classes['form-error-description']"
-                >&#9432; กรุณากรอกเลขCVVหลังบัตร</label
+                ><RiErrorWarningFill :class="classes['warning-icon']" />
+                กรุณากรอกเลขCVVหลังบัตร</label
               >
             </div>
           </div>
@@ -276,6 +305,7 @@ function cardCodeKeyPressHandler(event: any) {
       .modal-form-container {
         .form-input {
           display: flex;
+          position: relative;
           flex-direction: column;
           padding: 0 0.5rem;
           padding-bottom: 0.5rem;
@@ -292,6 +322,7 @@ function cardCodeKeyPressHandler(event: any) {
             border: 1.5px solid #b3b3b3;
             text-indent: 0.3rem;
             vertical-align: middle;
+            position: relative;
 
             [type="password"] {
               font-size: 1.2rem;
@@ -302,12 +333,29 @@ function cardCodeKeyPressHandler(event: any) {
             font-size: 80%;
           }
 
+          .eye-icon {
+            position: absolute;
+            cursor: pointer;
+            top: 60%;
+            right: 1rem;
+          }
+
           .form-error-description {
+            position: relative;
+            left: 1rem;
             font-size: 60%;
             line-height: 0;
             transform: translateY(0.6rem);
             font-weight: 600;
             color: #c83126;
+
+            .warning-icon {
+              top: 0;
+              left: -1rem;
+              position: absolute;
+              vertical-align: middle;
+              transform: translateY(-0.3rem);
+            }
           }
         }
 

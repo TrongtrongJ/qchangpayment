@@ -35,14 +35,16 @@ export function formatCardCode() {
   cardFormData.cardCode = formatCreditDebitCardCode(cardFormData.cardCode);
 }
 
-export const cardDisplayFormat = reactive<Record<string, "text" | "password">>({
-  cardCode: "password",
-  CVV: "password",
+export const cardInputFormatIsPassword = reactive<
+  Record<"cardCode" | "CVV", boolean>
+>({
+  cardCode: true,
+  CVV: true,
 });
 
 export const cardCodeDisplayData = computed(() => {
   return {
-    type: cardDisplayFormat.cardCode,
+    type: cardInputFormatIsPassword.cardCode ? "password" : "text",
     str: cardFormData.cardCode,
   };
 });
@@ -72,6 +74,7 @@ export function resetCardFormData() {
   syncKeyValues(cardFormData, initialCardFormData);
   syncKeyValues(cardSettings, initialCardSettings);
   resetAllKeysTo(cardFormWasTouched, false);
+  resetAllKeysTo(cardInputFormatIsPassword, true);
 }
 
 watch(isModalActive, (isActive) => {
