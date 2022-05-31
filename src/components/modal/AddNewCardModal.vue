@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { isChar } from "@src/utils";
 import RiErrorWarningFill from "~icons/ri/error-warning-fill";
 import MdiEye from "~icons/mdi/eye";
@@ -24,16 +23,13 @@ function cardCodeKeyPressHandler(event: any) {
   const { key } = event;
   if (isChar(key)) {
     cardFormData.cardCode += key;
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
+  } else if (["backspace", "delete"].includes(key.toLowerCase())) {
+    const cardFormDataCardCode = cardFormData.cardCode;
+    cardFormData.cardCode = cardFormDataCardCode.slice(
+      0,
+      cardFormDataCardCode.slice(-1) === " " ? -2 : -1
+    );
   }
-  const cardFormDataCardCode = cardFormData.cardCode;
-  cardFormData.cardCode = cardFormDataCardCode.slice(
-    0,
-    cardFormData.cardCode.slice(-1) === " " ? -2 : -1
-  );
-  return true;
 }
 
 function getEyeIcon(InputDisplayFormatIsPassword: boolean) {
