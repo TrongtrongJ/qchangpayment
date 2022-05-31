@@ -137,7 +137,7 @@ function getEyeIcon(InputDisplayFormatIsPassword: boolean) {
               ><input
                 @focus="cardFormWasTouched.CVV = true"
                 v-model="cardFormData.CVV"
-                type="password"
+                :type="cardInputFormatIsPassword.CVV ? 'password' : 'text'"
                 placeholder="&#9679;&#9679;&#9679;"
               />
               <component
