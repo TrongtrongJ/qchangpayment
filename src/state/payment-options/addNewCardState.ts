@@ -18,7 +18,7 @@ import {
   resetAllKeysTo,
 } from "@src/utils";
 
-export const isModalActive = ref<boolean>(true);
+export const isModalActive = ref<boolean>(false);
 export function toggleModal() {
   isModalActive.value = !isModalActive.value;
 }
@@ -40,13 +40,6 @@ export const cardInputFormatIsPassword = reactive<
 >({
   cardCode: true,
   CVV: true,
-});
-
-export const cardCodeDisplayData = computed(() => {
-  return {
-    type: cardInputFormatIsPassword.cardCode ? "password" : "text",
-    str: cardFormData.cardCode,
-  };
 });
 
 export const cardFormWasTouched = reactive({

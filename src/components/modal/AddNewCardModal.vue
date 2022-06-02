@@ -6,7 +6,6 @@ import MdiEyeOff from "~icons/mdi/eye-off";
 import {
   isModalActive,
   cardFormData,
-  cardCodeDisplayData,
   cardSettings,
   isFormValid,
   cardFormWasTouched,
@@ -25,10 +24,10 @@ function cardCodeKeyPressHandler(event: any) {
     cardFormData.cardCode += key;
   } else if (["backspace", "delete"].includes(key.toLowerCase())) {
     const cardFormDataCardCode = cardFormData.cardCode;
-    cardFormData.cardCode = cardFormDataCardCode.slice(
-      0,
-      cardFormDataCardCode.slice(-1) === " " ? -2 : -1
-    );
+    cardFormData.cardCode =
+      cardFormDataCardCode.length > 1
+        ? cardFormDataCardCode.slice(0, cardFormDataCardCode.slice(-1) === " " ? -2 : -1)
+        : "";
   }
 }
 
@@ -80,18 +79,18 @@ function getEyeIcon(InputDisplayFormatIsPassword: boolean) {
             <label>หมายเลขบัตร<span>*</span></label
             ><input
               @focus="cardFormWasTouched.cardCode = true"
-              @keyup="formatCardCode()"
               :value="
-                cardCodeDisplayData.type === 'password'
-                  ? cardCodeDisplayData.str
+                cardInputFormatIsPassword.cardCode
+                  ? cardFormData.cardCode
                       .split(' ')
                       .map(
                         (chunk) => `${decodeHTMLEntity('&#9679;').repeat(chunk.length)}`
                       )
                       .join(' ')
-                  : cardCodeDisplayData.str
+                  : cardFormData.cardCode
               "
-              @keydown="($event: any) => cardCodeKeyPressHandler($event)"
+              @keydown="formatCardCode()"
+              @keyup="($event: any) => cardCodeKeyPressHandler($event)"
               type="text"
               placeholder="`&#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;`"
             />

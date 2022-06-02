@@ -41,10 +41,11 @@ const iconComponent = defineAsyncComponent(
   border-radius: 8px;
   min-width: 200px;
   min-height: 100px;
-  max-width: 40%;
   box-sizing: border-box;
+  flex-basis: min-content;
   border: 1px solid white;
   margin: 1rem;
+  max-height: 150px;
   flex: 1;
 }
 
@@ -54,7 +55,9 @@ const iconComponent = defineAsyncComponent(
 .card-inner {
   margin: 1rem;
   display: flex;
+  flex-basis: min-content;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
 .card-icon-container {
