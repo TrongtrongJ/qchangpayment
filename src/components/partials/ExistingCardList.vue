@@ -14,6 +14,8 @@ import {
   cardPaymentOptionQuantity,
 } from "@state/payment-options/cardPaymentOptionsState";
 
+import { stringifiedTransactionValue } from "@state/transaction/currentTransactionState";
+
 import { isModalActive } from "@state/payment-options/addNewCardState";
 
 function getCardIconComponent(cardTypeName: string) {
@@ -78,7 +80,7 @@ function getCardIconComponent(cardTypeName: string) {
   </div>
   <div :class="classes['submit-button-container']">
     <button class="pointer-cursor" :class="classes['submit-button']">
-      ชำระเงิน 1,200 บาท
+      ชำระเงิน {{ stringifiedTransactionValue }} บาท
     </button>
   </div>
 </template>
@@ -114,20 +116,20 @@ function getCardIconComponent(cardTypeName: string) {
 
 .cards-container-padded {
   height: 290px;
-  margin: 1rem auto 1rem auto;
+  margin: 1rem auto;
   overflow-y: scroll;
 }
 
 .cards-container {
   display: flex;
-  padding: 1rem;
+  padding: 1vmin;
   flex-direction: column;
   line-height: 1.5rem;
 
   .payment-card-container {
     > div {
       display: inline-block;
-      margin: 0.5rem;
+      margin: 0.5vmin;
       text-align: center;
       vertical-align: middle;
     }

@@ -39,13 +39,15 @@ const iconComponent = defineAsyncComponent(
 .card {
   background-color: white;
   border-radius: 8px;
-  min-width: 200px;
+  min-width: 220px;
+  max-width: 360px;
   min-height: 100px;
   box-sizing: border-box;
   flex-basis: min-content;
   border: 1px solid white;
   margin: 1rem;
   max-height: 150px;
+  flex-shrink: 1;
   flex: 1;
 }
 
@@ -53,7 +55,7 @@ const iconComponent = defineAsyncComponent(
   border-color: var(--secondary);
 }
 .card-inner {
-  margin: 1rem;
+  margin: 1vmax;
   display: flex;
   flex-basis: min-content;
   justify-content: space-between;
@@ -88,5 +90,11 @@ const iconComponent = defineAsyncComponent(
 .card-text-description {
   font-size: 80%;
   color: #9e9e9e;
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    max-width: 450px;
+  }
 }
 </style>

@@ -22,7 +22,8 @@ body {
 
 	.content-container {
 		background-color: #f2f2f2;
-		height: 73vh;
+		min-height: 73vh;
+    height: auto;
 		display: flex;
 		justify-content: center;
 		align-items: center;

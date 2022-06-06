@@ -20,6 +20,8 @@ const CardComponent = computed(() =>
 
 <style scoped lang="scss" module="classes">
 .cards-options-container {
+  margin-top: 1.5vmax;
+  margin-bottom: 2vmax;
   width: 90vw;
   max-width: 500px;
   max-height: 500px;
