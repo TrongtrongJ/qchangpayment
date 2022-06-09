@@ -1,4 +1,4 @@
-import { baseSrcUri } from "@src/data/appContextData";
+import { baseSrcUri } from "./appContextData";
 
 const baseIconComponentUri = `${baseSrcUri}/components/icons/`;
 
@@ -10,7 +10,7 @@ type PaymentOption = {
   to: string;
 };
 
-export const paymentOptions: PaymentOption[] = [
+export const paymentOptions: Readonly<PaymentOption[]> = [
   {
     title: "เครดิตการ์ด/เดบิตการ์ด",
     description: "ชำระผ่านเครดิตการ์ด/เดบิตการ์ด",

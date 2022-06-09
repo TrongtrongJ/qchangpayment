@@ -172,12 +172,20 @@ function getEyeIcon(InputDisplayFormatIsPassword: boolean) {
       <hr :class="classes['section-divider']" />
       <div :class="classes['modal-footer-section']">
         <div>
-          <button :class="classes['cancel-button']" @click="isModalActive = false">
+          <button
+            class="pointer-cursor"
+            :class="classes['cancel-button']"
+            @click="isModalActive = false"
+          >
             ยกเลิก
           </button>
         </div>
         <div>
-          <button :class="classes['confirm-button']" :disabled="!isFormValid">
+          <button
+            class="pointer-cursor"
+            :class="classes['confirm-button']"
+            :disabled="!isFormValid"
+          >
             บันทึกข้อมูล
           </button>
         </div>

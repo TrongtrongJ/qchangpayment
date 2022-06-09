@@ -27,6 +27,9 @@ export default defineConfig({
       "nprogress",
       "notyf",
       "vue",
+      "he",
+      "jsbarcode",
+      "qrcode-vue3",
       //	'unocss',
       //	'@unocss/preset-wind'
     ],
