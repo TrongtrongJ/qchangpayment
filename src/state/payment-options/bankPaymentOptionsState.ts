@@ -27,5 +27,5 @@ export function proceedWithPaymentHandler() {
 export const paymentInfo = reactive({
   paymentRefId: "9362533441",
   paymentBarcode: "1121121121",
-  paymentQRCode: "1121121121",
+  paymentQRCode: "https://www.google.co.th",
 });

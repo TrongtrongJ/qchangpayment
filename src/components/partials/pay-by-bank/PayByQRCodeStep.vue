@@ -8,33 +8,40 @@ import { paymentInfo } from "@state/payment-options/bankPaymentOptionsState";
 </script>
 
 <template>
-  <div :class="classes['retracted-container']">
-    <div :class="classes['payment-ref-id-container']">
-      <div>Ref 1. {{ paymentInfo.paymentRefId }}</div>
-      <div class="flex-center" :class="classes['copy-icon-container']">
-        <CopyOutlineRounded />
+  <div :class="classes['main-container']">
+    <div :class="classes['retracted-container']">
+      <div :class="classes['payment-ref-id-container']">
+        <div>Ref 1. {{ paymentInfo.paymentRefId }}</div>
+        <div class="flex-center" :class="classes['copy-icon-container']">
+          <CopyOutlineRounded />
+        </div>
+      </div>
+      <div :class="classes['ref-2-text-container']">
+        เลข Ref 2. คือเบอร์โทรศัพท์ของท่าน
+      </div>
+      <div class="flex-center">
+        <QRCodeVue3 :width="150" :height="150" :value="paymentInfo.paymentQRCode" />
+      </div>
+      <div :class="classes['save-qr-code-text-container']">บันทึก QR CODE</div>
+      <div :class="classes['instruction-text-container']">
+        <span>กดบันทึก QR CODE และแสกนผ่าน</span
+        ><span>แอพพลิเคชันของธนาคารเพื่อชำระเงิน</span>
+      </div>
+      <div :class="classes['barcode-container']">
+        <JSBarcodeWrapper :barcode-value="paymentInfo.paymentBarcode" />
       </div>
     </div>
-    <div :class="classes['ref-2-text-container']">เลข Ref 2. คือเบอร์โทรศัพท์ของท่าน</div>
-    <div class="flex-center">
-      <QRCodeVue3 :width="150" :height="150" :value="paymentInfo.paymentQRCode" />
+    <div :class="classes['action-buttons-container']">
+      <button :class="classes['save-button']"><SaveOutline /> บันทึกหน้าจอนี้</button>
+      <button :class="classes['share-button']"><PhShareNetwork /> แชร์หน้าจอนี้</button>
     </div>
-    <div :class="classes['save-qr-code-text-container']">บันทึก QR CODE</div>
-    <div :class="classes['instruction-text-container']">
-      <span>กดบันทึก QR CODE และแสกนผ่าน</span
-      ><span>แอพพลิเคชันของธนาคารเพื่อชำระเงิน</span>
-    </div>
-    <div :class="classes['barcode-container']">
-      <JSBarcodeWrapper :barcode-value="paymentInfo.paymentBarcode" />
-    </div>
-  </div>
-  <div :class="classes['action-buttons-container']">
-    <button :class="classes['save-button']"><SaveOutline /> บันทึกหน้าจอนี้</button>
-    <button :class="classes['share-button']"><PhShareNetwork /> แชร์หน้าจอนี้</button>
   </div>
 </template>
 
 <style scoped lang="scss" module="classes">
+.main-container {
+  margin: -1rem;
+}
 .retracted-container {
   display: block;
   max-width: 70%;
@@ -103,7 +110,7 @@ import { paymentInfo } from "@state/payment-options/bankPaymentOptionsState";
   > button {
     border: none;
     border-radius: 6px;
-    height: 2.3rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
