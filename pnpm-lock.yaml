@@ -2,7 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify-json/ic': ^1.1.4
+  '@iconify-json/material-symbols': ^1.1.3
   '@iconify-json/mdi': ^1.1.19
+  '@iconify-json/ph': ^1.1.1
   '@iconify-json/ri': ^1.1.2
   '@iconify/iconify': 2.2.1
   '@intlify/vite-plugin-vue-i18n': 3.4.0
@@ -61,7 +63,9 @@ dependencies:
 
 devDependencies:
   '@iconify-json/ic': 1.1.4
+  '@iconify-json/material-symbols': 1.1.3
   '@iconify-json/mdi': 1.1.19
+  '@iconify-json/ph': 1.1.1
   '@iconify-json/ri': 1.1.2
   '@intlify/vite-plugin-vue-i18n': 3.4.0_ffjyq3xvmksbcj77tjaigym5hi
   '@types/he': 1.1.2
@@ -134,8 +138,20 @@ packages:
       '@iconify/types': 1.1.0
     dev: true
 
+  /@iconify-json/material-symbols/1.1.3:
+    resolution: {integrity: sha512-KfUAvtmBUbu+ksfMXMc8VNiQl2L0XPbl3rCIdi5iVdpVpF18vOOP/Yl5Ka5JX4wWoE7gCoj5iqsMJuTlJ2n/2A==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
   /@iconify-json/mdi/1.1.19:
     resolution: {integrity: sha512-pEjLsJJBL5ZYRa+b2A5iFFF7jXNc+fmfNDPmE+mwPjEHpt9yPAZXzjdK1UvebtTq8Gh7L+E4KrAQW3LMIJtkjQ==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
+  /@iconify-json/ph/1.1.1:
+    resolution: {integrity: sha512-sIHTY+c1F8x29BM49IqoccJ3T8mvVXPcrE4WOpJ3GsBaip2YqFJRYU60rw64UL6GEI13vWSD7NsZKq8ytTO87g==}
     dependencies:
       '@iconify/types': 1.1.0
     dev: true

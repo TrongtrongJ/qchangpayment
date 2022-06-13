@@ -10,7 +10,7 @@ import { imagetools } from "vite-imagetools";
 import ImageMin from "vite-plugin-imagemin";
 import { vueI18n } from "@intlify/vite-plugin-vue-i18n";
 //import Unocss from 'unocss/vite';
-// import presetTailwind from '@unocss/preset-wind';
+//import presetTailwind from '@unocss/preset-wind';
 import purgecss from "rollup-plugin-purgecss";
 
 // https://vitejs.dev/config/

@@ -1,4 +1,4 @@
-import { ref, computed, watch } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 import { Bank, bankOptions } from "@src/data/bankOptionsData";
 
 type PayByBankStep = "select-bank" | "select-method" | "pay";
@@ -20,5 +20,12 @@ export function selectBankOptionHandler(value: Bank) {
   currentPaymentStep.value = "select-method";
 }
 
-export const paymentBarcode = ref<string>("1121121121");
-export const paymentQRCode = ref<string>("1121121121");
+export function proceedWithPaymentHandler() {
+  currentPaymentStep.value = "pay";
+}
+
+export const paymentInfo = reactive({
+  paymentRefId: "9362533441",
+  paymentBarcode: "1121121121",
+  paymentQRCode: "1121121121",
+});
