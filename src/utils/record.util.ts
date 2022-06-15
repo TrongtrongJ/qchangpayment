@@ -49,21 +49,20 @@ export function deriveKeysValidity(
 }
 
 export function extractObjectDtoFromRecordOrClass<T extends BaseRecordType>(
-  objectDto: BaseRecordType<primitive & BaseFunctionType>,
+  objectDto: DtoOf<BaseRecordType>,
   objectFrom: RecordOrClass
 ) {
   return Object.keys(objectDto).reduce((acc, cur) => {
+    const currentValue = objectDto[cur];
     return {
       ...acc,
       [cur]:
-        typeof objectDto[cur] === "function"
-          ? objectDto[cur](objectFrom)
+        typeof currentValue === "function"
+          ? currentValue(objectFrom)
           : objectFrom[cur],
     };
   }, {}) as {
-    [key in keyof T]: T[key] extends BaseFunctionType
-      ? ReturnType<T[key]>
-      : T[key];
+    [key in keyof T]: T[key] extends (...args: any[]) => infer R ? R : T[key];
   };
 }
 
