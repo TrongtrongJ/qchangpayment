@@ -34,6 +34,7 @@ const appIconsUri = `${baseUri}/app-icons/`;
             <IcRoundKeyboardArrowRight />
           </div>
         </div>
+        <hr :class="classes['app-option-divider']" />
       </div>
     </div>
   </div>
@@ -80,6 +81,7 @@ const appIconsUri = `${baseUri}/app-icons/`;
         display: flex;
         flex-direction: row;
         align-items: center;
+        font-weight: 600;
 
         :first-child {
           margin-right: 1rem;
