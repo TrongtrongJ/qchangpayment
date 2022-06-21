@@ -1,7 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from "vue";
+import {
+  SelectServiceStep,
+  InputPaymentDataStep,
+} from "@components/partials/pay-by-services";
+
+import { currentPaymentStep } from "@state/payment-options/servicePaymentOptionsState";
+
+const PayByServiceStepComponent = computed(() => {
+  switch (currentPaymentStep.value) {
+    case "select-service":
+      return SelectServiceStep;
+    case "input-payment-data":
+      return InputPaymentDataStep;
+    default:
+      return SelectServiceStep;
+  }
+});
+</script>
 
 <template>
-  <div :class="classes['main-option-container']"></div>
+  <div :class="classes['main-option-container']">
+    <div :class="classes['main-option-content']">
+      <component :is="PayByServiceStepComponent" />
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss" module="classes">
@@ -14,5 +37,9 @@
   background-color: white;
   border-radius: 8px;
   border: 1px solid #d7d7d7;
+}
+
+.main-option-content {
+  margin: 2rem;
 }
 </style>
