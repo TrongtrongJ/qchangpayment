@@ -13,7 +13,7 @@ export function formatCreditDebitCardCode(cardCode: string): string {
 }
 
 export function isValidFnameLname(name: string): boolean {
-  return name.split(" ").length > 1;
+  return name.trim().split(" ").length > 1;
 }
 
 const cardExpirationRegex: RegExp = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;

@@ -33,5 +33,15 @@ export function replaceAllNumericWithChar(
 }
 
 export function numericStringWithCommas(x: string | number): string {
-  return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+  return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
+export function getStringThatExcludes(
+  s: string,
+  toExclude: string | string[]
+): string {
+  typeof toExclude === "string"
+    ? (s = s.replaceAll(toExclude, ""))
+    : toExclude.forEach((tis) => (s = s.replaceAll(tis, "")));
+  return s;
 }
