@@ -5,7 +5,11 @@ import {
   serviceOptions,
   ServiceType,
 } from "@data/serviceOptionsData";
-import { isValidPhoneNumber } from "@src/utils";
+import {
+  getUnformattedPhoneNumber,
+  isNumeric,
+  isValidPhoneNumber,
+} from "@src/utils";
 
 export const selectedService = ref<Service>("true-money");
 
@@ -29,12 +33,31 @@ export function selectServiceOptionHandler(value: Service) {
 
 export const servicePaymentPhoneNo = ref<string>("");
 
+const unformattedPaymentPhoneNo = computed(() =>
+  getUnformattedPhoneNumber(servicePaymentPhoneNo.value)
+);
+
 export const isPaymentPhoneNoTouched = ref<boolean>(false);
 
 export const isPaymentPhoneNoError = computed(
   () =>
     isPaymentPhoneNoTouched.value &&
-    !isValidPhoneNumber(servicePaymentPhoneNo.value)
+    !isValidPhoneNumber(unformattedPaymentPhoneNo.value)
 );
 
 export const servicePaymentQrCode = computed(() => "1121121121");
+
+export const paymentPhoneNoErrorMsg = computed<string>(() => {
+  if (!isPaymentPhoneNoError.value) {
+    return "";
+  } else {
+    const unformattedPhoneNumber = unformattedPaymentPhoneNo.value;
+    if (!unformattedPhoneNumber.length)
+      return "กรุณากรอกหมายเลขโทรศัพท์ของคุณให้ครบถ้วน";
+    if (!isNumeric(unformattedPaymentPhoneNo.value))
+      return "โปรดกรอกเบอร์โทรเป็นตัวเลข0-9เท่านั้น";
+    if (unformattedPhoneNumber.length !== 10)
+      return "กรุณากรอกหมายเลขโทรศัพท์ของคุณให้ครบถ้วน";
+    return "เกิดข้อผิดพลาด";
+  }
+});

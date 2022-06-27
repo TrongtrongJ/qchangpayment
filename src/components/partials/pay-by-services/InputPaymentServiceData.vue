@@ -10,6 +10,7 @@ import {
   servicePaymentPhoneNo,
   isPaymentPhoneNoTouched,
   isPaymentPhoneNoError,
+  paymentPhoneNoErrorMsg,
 } from "@state/payment-options/servicePaymentOptionsState";
 
 import { stringifiedTransactionValue } from "@state/transaction/currentTransactionState";
@@ -77,7 +78,7 @@ import { stringifiedTransactionValue } from "@state/transaction/currentTransacti
             />
             <label :class="classes['form-error-description']"
               ><RiErrorWarningFill :class="classes['warning-icon']" />
-              กรุณากรอกหมายเลขโทรศัพท์ของคุณให้ครบถ้วน</label
+              {{ paymentPhoneNoErrorMsg }}</label
             >
           </div>
         </div>
