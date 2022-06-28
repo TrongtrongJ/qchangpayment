@@ -42,6 +42,6 @@ export function getStringThatExcludes(
 ): string {
   typeof toExclude === "string"
     ? (s = s.replaceAll(toExclude, ""))
-    : toExclude.forEach((tis) => (s = s.replaceAll(tis, "")));
+    : toExclude.forEach((tExc) => (s = s.replaceAll(tExc, "")));
   return s;
 }
