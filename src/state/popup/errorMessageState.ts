@@ -9,7 +9,7 @@ export const popupErrorMessage = reactive({
   subtitle: "",
 });
 
-function clearErrorMessage() {
+export function clearErrorMessage() {
   errorMessageTimeout.value && clearTimeout(errorMessageTimeout.value);
   resetAllKeysTo(popupErrorMessage, "");
 }
