@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     JcbCardIconSvg: typeof import('./src/components/icons/jcb-card-icon-svg.vue')['default']
     JSBarcodeWrapper: typeof import('./src/components/partials/JSBarcodeWrapper.vue')['default']
     MastercardCardIconSvg: typeof import('./src/components/icons/mastercard-card-icon-svg.vue')['default']
+    MessagePopup: typeof import('./src/components/popup/MessagePopup.vue')['default']
     MobilePhoneIconSvg: typeof import('./src/components/icons/mobile-phone-icon-svg.vue')['default']
     Navbar: typeof import('./src/components/nav/Navbar.vue')['default']
     NavbarCard: typeof import('./src/components/nav/NavbarCard.vue')['default']

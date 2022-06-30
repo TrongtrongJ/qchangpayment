@@ -12,8 +12,16 @@ import {
   isPaymentPhoneNoError,
   paymentPhoneNoErrorMsg,
 } from "@state/payment-options/servicePaymentOptionsState";
+import { dispatchErrorMessage } from "@state/popup/errorMessageState";
 
 import { stringifiedTransactionValue } from "@state/transaction/currentTransactionState";
+
+function dispatchMockErrorMessage() {
+  dispatchErrorMessage({
+    title: "เบอร์โทรศัพท์นี้ยังไม่ได้ลงทะเบียนกับ True Wallet",
+    subtitle: "โปรดเช็คเลขหมายโทรศัพท์อีกครั้ง",
+  });
+}
 </script>
 
 <template>
@@ -85,7 +93,7 @@ import { stringifiedTransactionValue } from "@state/transaction/currentTransacti
         <hr :class="classes.divider" />
       </div>
       <div :class="classes['action-buttons-container']">
-        <button :class="classes['pay-button']">
+        <button @click="dispatchMockErrorMessage()" :class="classes['pay-button']">
           ชำระเงิน {{ stringifiedTransactionValue }} บาท
         </button>
       </div>

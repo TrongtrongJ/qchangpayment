@@ -12,7 +12,7 @@ import {
   isValidPhoneNumber,
 } from "@src/utils";
 
-export const selectedService = ref<Service>("true-money");
+export const selectedService = ref<Service>("true-wallet");
 
 export const selectedServiceOption = computed(
   () =>
@@ -21,7 +21,7 @@ export const selectedServiceOption = computed(
 );
 
 type PayByServiceStep = "select-service" | "input-payment-data" | "await-pay";
-export const currentPaymentStep = ref<PayByServiceStep>("select-service");
+export const currentPaymentStep = ref<PayByServiceStep>("input-payment-data");
 
 export const selectedServiceType = computed(
   () => selectedServiceOption.value.type

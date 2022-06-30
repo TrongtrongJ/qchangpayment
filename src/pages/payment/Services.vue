@@ -20,6 +20,7 @@ const PayByServiceStepComponent = computed(() => {
 </script>
 
 <template>
+  <MessagePopup />
   <div :class="classes['main-option-container']">
     <div :class="classes['main-option-content']">
       <component :is="PayByServiceStepComponent" />
